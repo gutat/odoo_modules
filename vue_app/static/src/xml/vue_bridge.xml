@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="vue_app.VueAppAction" owl="2">
+        <div class="o_action_manager w-100 h-100 bg-view">
+            <!-- Vue mount point referenced in vue_bridge.js -->
+            <div t-ref="vueRoot" class="w-100 h-100">
+            </div>
+
+            <!-- Portal to teleport native Owl Chatter into the Vue-rendered #odoo_chatter_box -->
+            <t t-if="state.currentRecordId !== null">
+                <t t-portal="'#odoo_chatter_box'">
+                    <Chatter threadModel="'sale.order'" threadId="state.currentRecordId" hasFollowers="true" hasActivities="true" hasMessageList="true"/>
+                </t>
+            </t>
+        </div>
+    </t>
+</templates>

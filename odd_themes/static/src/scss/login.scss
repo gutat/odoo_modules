@@ -1,0 +1,150 @@
+/* Custom Login, Reset Password & Auth Pages Styling */
+/* Ensure centering of auth containers on screens */
+
+html, body.bg-100 {
+    height: 100% !important;
+    min-height: 100vh !important;
+    margin: 0;
+    background-color: #f8f9fa !important;
+}
+
+#wrapwrap {
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+#wrapwrap > main {
+    flex-grow: 1 !important;
+    display: flex !important;
+    align-items: center !important;  /* Vertical centering */
+    justify-content: center !important; /* Horizontal centering */
+    padding: 2rem 0;
+}
+
+/* Auth Cards General Styling */
+.container.py-5 {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin: auto !important;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+}
+
+.card.mx-auto.bg-100 {
+    width: 100% !important;
+    max-width: 400px !important; /* Slightly wider for better UX */
+    background-color: #ffffff !important;
+    border-radius: 12px !important;
+    border: none !important;
+    overflow: hidden !important;
+}
+
+.card-body {
+    padding: 2.5rem 2rem !important;
+}
+
+/* Hide Signup link (usually "Don't have an account?") */
+.justify-content-between.mt-2.d-flex.small a[href*="/web/signup"],
+a[href*="/web/signup"] {
+    display: none !important;
+}
+
+/* Primary Button Override for Auth Screens */
+.oe_login_buttons .btn-primary,
+.clearfix .btn-primary,
+form button[type="submit"].btn-primary {
+    background-color: var(--primary, #000000) !important;
+    border-color: var(--primary, #000000) !important;
+    border-radius: 8px !important;
+    padding: 0.6rem 1rem !important;
+    font-weight: 600 !important;
+    font-size: 1rem !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.oe_login_buttons .btn-primary:hover,
+.clearfix .btn-primary:hover,
+form button[type="submit"].btn-primary:hover {
+    background-color: darken(#000000, 10%) !important;
+    border-color: darken(#000000, 10%) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(113, 75, 103, 0.2) !important;
+}
+
+/* Inputs styling */
+.form-control {
+    border-radius: 6px !important;
+    padding: 0.6rem 0.8rem !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+.form-control:focus {
+    border-color: #000000 !important;
+    box-shadow: 0 0 0 0.2rem rgba(113, 75, 103, 0.25) !important;
+}
+
+/* Links (Reset password, log in as superuser) */
+.btn-link, a {
+    color: #000000 !important;
+    text-decoration: none !important;
+}
+
+.btn-link:hover, a:hover {
+    color: darken(#000000, 15%) !important;
+    text-decoration: underline !important;
+}
+
+.text-center.small.mt-4.pt-3.border-top {
+    margin-top: 1.5rem !important;
+    padding-top: 1.5rem !important;
+}
+
+/* Database Selector Input Group Redesign */
+.mb-3 > .input-group {
+    border: 1px solid #dee2e6 !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+    transition: all 0.2s ease-in-out;
+}
+
+.mb-3 > .input-group:focus-within {
+    border-color: #000000 !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Input inside the group */
+.mb-3 > .input-group > input#db.form-control {
+    border: none !important;
+    background-color: #f8f9fa !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    color: #495057 !important;
+    font-weight: 500 !important;
+}
+
+/* Select button inside the group */
+.mb-3 > .input-group > a.btn-secondary {
+    border: none !important;
+    background-color: transparent !important;
+    color: #495057 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 1rem !important;
+    border-radius: 0 !important;
+    font-weight: 600 !important;
+    border-left: 1px solid #dee2e6 !important;
+}
+
+.mb-3 > .input-group > a.btn-secondary:hover {
+    background-color: #e9ecef !important;
+    color: #000000 !important;
+    text-decoration: none !important;
+}
+
+.mb-3 > .input-group > a.btn-secondary i.fa-database {
+    margin-left: 0.3rem !important;
+    color: inherit !important;
+}

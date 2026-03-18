@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="odd_themes.DashboardView">
+        <div class="o_odd_dashboard h-100 overflow-auto bg-light">
+            <div class="container-fluid py-5">
+                <div class="o_odd_dashboard_grid d-flex flex-wrap justify-content-center mx-auto" style="max-width: 1000px; gap: 2rem 1rem;">
+                    <t t-foreach="menus" t-as="menu" t-key="menu.id">
+                        <div class="o_odd_app_card d-flex flex-column align-items-center text-center cursor-pointer p-2"
+                             t-on-click="() => this.onMenuClick(menu)"
+                             style="width: 120px; transition: transform 0.2s ease-in-out;">
+                            
+                            <div class="o_odd_app_icon_container mb-2 d-flex align-items-center justify-content-center"
+                                 style="width: 80px; height: 80px; background: transparent;">
+                                <div class="o_odd_app_icon d-flex align-items-center justify-content-center" style="width: 64px; height: 64px;">
+                                    <!-- Priority 1: Base64 Icon Data -->
+                                    <t t-if="menu.webIconData">
+                                        <img t-attf-src="data:image/png;base64,{{menu.webIconData}}" 
+                                             class="img-fluid"
+                                             style="width: 100%; height: 100%; object-fit: contain;"/>
+                                    </t>
+                                    <!-- Priority 2: Fallback to static module icon or fa class -->
+                                    <t t-else="">
+                                        <t t-if="menu.webIcon">
+                                            <t t-set="icon_parts" t-value="menu.webIcon.split(',')"/>
+                                            <!-- Try loading the static icon. If it fails, fallback to FA -->
+                                            <img t-att-src="'/' + icon_parts[0].trim() + '/static/description/icon.png'"/>
+                                            <!-- The FA fallback (hidden by default) -->
+                                            <span class="fa fa-th-large text-muted" style="display:none; font-size: 2.5rem;"/>
+                                        </t>
+                                        <!-- Ultimate fallback if nothing exists -->
+                                        <span t-else="" class="fa fa-th-large text-muted" style="font-size: 2.5rem;"/>
+                                    </t>
+                                </div>
+                            </div>
+                            
+                            <div class="o_odd_app_name mt-1" style="width: 100%;">
+                                <span class="d-block text-dark fw-medium text-truncate px-1" 
+                                      t-esc="menu.name || menu.label || 'No Name'" 
+                                      style="font-size: 13px; line-height: 1.2;"/>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

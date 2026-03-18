@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Client Action for Vue App -->
+    <record id="action_vue_app" model="ir.actions.client">
+        <field name="name">Vue App Hello Odoo</field>
+        <field name="tag">vue_app.action</field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem id="vue_app_menu_root"
+              name="Vue App"
+              action="action_vue_app"
+              sequence="10"/>
+</odoo>

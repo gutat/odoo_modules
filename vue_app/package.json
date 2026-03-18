@@ -1,0 +1,10 @@
+{
+  "name": "odoo_vue_app",
+  "version": "1.0.0",
+  "description": "Vue application for Odoo vue_app module",
+  "scripts": {
+    "dev": "npm run dev --prefix static/src/frontend",
+    "build": "npm run build --prefix static/src/frontend",
+    "install:all": "npm install --prefix static/src/frontend"
+  }
+}

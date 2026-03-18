@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.DS_Store
+.idea/
+.vscode/
+*.swp
+vue_app/static/src/frontend/node_modules/*

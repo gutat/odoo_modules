@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Client Action for Home Dashboard (Owl Component) -->
+    <!-- Renamed ID to avoid conflict with the old ir.actions.act_window -->
+    <record id="odd_action_dashboard_client" model="ir.actions.client">
+        <field name="name">Dashboard</field>
+        <field name="tag">odd_dashboard_client_action</field>
+        <field name="target">current</field>
+    </record>
+</odoo>

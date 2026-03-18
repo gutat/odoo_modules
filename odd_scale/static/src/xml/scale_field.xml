@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="odd_scale.ScaleFloatField" owl="1">
+        <div class="d-flex align-items-center w-100">
+            <t t-if="scaleState.isListening">
+                <input type="text" 
+                       class="o_input text-success fw-bold text-end px-2" 
+                       t-att-value="scaleState.liveWeight" 
+                       disabled="disabled" 
+                       style="background-color: #e8f5e9;"/>
+            </t>
+            <t t-else="">
+                <FloatField t-props="props"/>
+            </t>
+            <button t-if="!props.readonly"
+                    type="button" 
+                    t-attf-class="btn btn-sm ms-1 fw-bold #{scaleState.isListening ? 'btn-danger' : 'btn-primary'}"
+                    t-on-click="toggleScaleRead"
+                    title="Toggle Scale Connection">
+                <i t-attf-class="fa #{scaleState.isListening ? 'fa-stop-circle' : 'fa-balance-scale'}"/>
+                <span t-if="scaleState.isListening" class="ms-1">Stop</span>
+            </button>
+        </div>
+    </t>
+</templates>

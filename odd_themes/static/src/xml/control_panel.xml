@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="odd_themes.ControlPanel" t-inherit="web.ControlPanel" t-inherit-mode="extension" owl="1">
+
+        <xpath expr="//div[hasclass('o_control_panel_breadcrumbs')]" position="replace">
+            <!-- 1. Our New Top Header Container -->
+            <div class="o_control_panel_top">
+                <!-- Original Breadcrumbs Content (Duplicated) -->
+                <div class="o_control_panel_breadcrumbs top_header_breadcrumbs d-flex align-items-center gap-1 order-0 h-lg-100">
+                    <div class="o_control_panel_main_buttons d-flex gap-1 d-empty-none d-print-none" t-ref="mainButtons" t-on-keydown="onMainButtonsKeydown">
+                        <div class="btn-group d-xl-none o_control_panel_collapsed_create">
+                            <t t-slot="control-panel-create-button"/>
+                            <button t-att-class="{invisible: display.disableDropdown}" type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split o_control_panel_collapsed_create" data-bs-toggle="dropdown" aria-expanded="false">
+                                 <span class="visually-hidden">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu o_control_panel_collapsed_create">
+                                <t t-slot="layout-buttons"/>
+                                <t t-slot="control-panel-always-buttons"/>
+                            </ul>
+                        </div>
+                        <div class="d-none d-xl-inline-flex gap-1">
+                            <t t-slot="control-panel-create-button"/>
+                            <t t-slot="layout-buttons"/>
+                            <t t-slot="control-panel-always-buttons"/>
+                        </div>
+                    </div>
+                    <t t-if="env.config.noBreadcrumbs">
+                        <section class="o_control_panel_breadcrumbs_actions d-contents">
+                            <t t-slot="control-panel-additional-actions"/>
+                            <t t-slot="control-panel-status-indicator" />
+                        </section>
+                    </t>
+                    <t t-else="">
+                        <t t-slot="control-panel-breadcrumb">
+                            <t t-call="web.Breadcrumbs"/>
+                        </t>
+                    </t>
+                </div>
+            </div>
+
+
+        </xpath>
+    </t>
+    
+    <t t-name="odd_themes.FormStatusIndicator" t-inherit="web.FormStatusIndicator" t-inherit-mode="extension" owl="1">
+        <xpath expr="//button[hasclass('o_form_button_save')]" position="inside">
+            <span class="ms-1">Save</span>
+        </xpath>
+        <xpath expr="//button[hasclass('o_form_button_cancel')]" position="inside">
+            <span class="ms-1">Discard</span>
+        </xpath>
+    </t>
+
+    <t t-name="odd_themes.CogMenu" t-inherit="web.CogMenu" t-inherit-mode="extension" owl="1">
+        <xpath expr="//i[hasclass('fa-cog')]" position="after">
+        </xpath>
+    </t>
+
+    <t t-name="odd_themes.ActionMenus" t-inherit="web.ActionMenus" t-inherit-mode="extension" owl="1">
+        <!-- Some versions already have 'Actions' text, but we ensure it is there and styled -->
+        <xpath expr="//Dropdown//i[hasclass('fa-cog')]" position="after">
+        </xpath>
+    </t>
+
+    <t t-name="odd_themes.NavBar" t-inherit="web.NavBar" t-inherit-mode="extension" owl="1">
+        <xpath expr="//t[@t-call='web.NavBar.AppsMenu']" position="before">
+            <!-- Home / Dashboard Button -->
+            <div class="o_navbar_home_button d-flex align-items-center px-3 clickable" 
+                 t-on-click="_onHomeClick" 
+                 title="Dashboard">
+                <i class="fa fa-th-large fa-lg text-white"/>
+            </div>
+        </xpath>
+    </t>
+</templates>

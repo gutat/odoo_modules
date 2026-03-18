@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_quant_tree_editable_inherit_odd" model="ir.ui.view">
+        <field name="name">stock.quant.tree.editable.inherit.odd</field>
+        <field name="model">stock.quant</field>
+        <field name="inherit_id" ref="stock.view_stock_quant_tree_editable"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='product_uom_id']" position="after">
+                <field name="box_count" string="Box" readonly="1" optional="show"/>
+                <field name="bag_count" string="Bag" readonly="1" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

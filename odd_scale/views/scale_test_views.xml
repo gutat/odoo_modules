@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Client Action -->
+    <record id="action_scale_test" model="ir.actions.client">
+        <field name="name">Scale Test</field>
+        <field name="tag">odd_scale.ScaleTest</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_scale_test_root" name="Scale Testing" sequence="10" web_icon="odd_scale,static/description/icon.png"/>
+    <menuitem id="menu_scale_test_action" name="Scale Test UI" parent="menu_scale_test_root" action="action_scale_test" sequence="10"/>
+</odoo>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="odd_scale.ScaleTest" owl="1">
+        <div class="o_scale_test p-4 bg-light h-100 overflow-auto">
+            <div class="container bg-white rounded shadow-sm p-4">
+                <h2 class="mb-4">Scale Connection Test</h2>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <div class="card border-0 bg-light p-3 h-100">
+                            <h4 class="mb-3 text-secondary">Settings</h4>
+                            <div class="mb-3">
+                                <label for="port_select" class="form-label">Serial Port</label>
+                                <div class="input-group">
+                                    <select id="port_select" class="form-select" t-model="state.selectedPort" t-att-disabled="state.isListening">
+                                        <option value="">-- Choose Port --</option>
+                                        <t t-foreach="state.ports" t-as="port" t-key="port">
+                                            <option t-att-value="port" t-esc="port"/>
+                                        </t>
+                                    </select>
+                                    <button class="btn btn-outline-primary" t-on-click="refreshPorts" t-att-disabled="state.isListening">
+                                        <i class="fa fa-refresh"/>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="baud_rate" class="form-label">Baud Rate</label>
+                                <select id="baud_rate" class="form-select" t-model="state.baudRate" t-att-disabled="state.isListening">
+                                    <option value="2400">2400</option>
+                                    <option value="4800">4800</option>
+                                    <option value="9600">9600</option>
+                                    <option value="19200">19200</option>
+                                    <option value="38400">38400</option>
+                                    <option value="57600">57600</option>
+                                    <option value="115200">115200</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="data_bits" class="form-label">Data Bits</label>
+                                <select id="data_bits" class="form-select" t-model="state.dataBits" t-att-disabled="state.isListening">
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                </select>
+                            </div>
+                            <button t-attf-class="btn w-100 #{state.isListening ? 'btn-danger' : 'btn-success'}" t-on-click="toggleListen">
+                                <t t-if="state.isListening">
+                                    <i class="fa fa-stop me-2"/> Stop Listening
+                                </t>
+                                <t t-else="">
+                                    <i class="fa fa-play me-2"/> Start Listening
+                                </t>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mt-3 mt-md-0">
+                        <div class="card border-0 bg-dark text-white p-3 h-100 d-flex flex-column justify-content-center align-items-center">
+                            <div class="text-uppercase text-info mb-2 small fw-bold">Current Weight</div>
+                            <div class="display-1 fw-bold mb-0">
+                                <t t-esc="state.currentWeight"/>
+                            </div>
+                            <div class="mt-2 text-secondary fw-bold">KG</div>
+                            <div class="mt-4 badge" t-attf-class="#{state.isListening ? 'bg-success' : 'bg-secondary'}">
+                                <t t-esc="state.statusMessage"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card border-0 bg-light p-3">
+                            <h4 class="mb-3 text-secondary">Connection Logs</h4>
+                            <div class="o_log_window bg-white border rounded p-2" style="height: 200px; overflow-y: scroll; font-family: monospace; font-size: 0.85rem;">
+                                <t t-foreach="state.logs" t-as="log" t-key="log_index">
+                                    <div t-attf-class="mb-1 #{log.type == 'error' ? 'text-danger' : 'text-dark'}">
+                                        <span class="text-muted mr-2">[<t t-esc="log.time"/>]</span>
+                                        <t t-esc="log.text"/>
+                                    </div>
+                                </t>
+                                <t t-if="state.logs.length == 0">
+                                    <div class="text-muted italic">No logs yet...</div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

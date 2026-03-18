@@ -1,0 +1,63 @@
+/* --- Client Action Dashboard Styling --- */
+
+.o_odd_dashboard {
+    background-color: #f8f9fa !important;
+    
+    // Grid Container
+    .o_odd_dashboard_grid {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-content: flex-start !important;
+        width: 100% !important;
+        padding: 0 1rem !important;
+    }
+
+    // App Card
+    .o_odd_app_card {
+        user-select: none;
+        
+        &:hover {
+            transform: translateY(-5px);
+            
+            .o_odd_app_name span {
+                color: var(--primary, #714b67) !important;
+                font-weight: 600 !important;
+            }
+        }
+    }
+
+    // Icon Container
+    .o_odd_app_icon_container {
+        transition: all 0.25s ease;
+        border-radius: 16px;
+        
+        .o_odd_app_icon {
+            img {
+                transition: transform 0.2s ease;
+            }
+        }
+    }
+
+    // App Name Label
+    .o_odd_app_name {
+        span {
+            font-size: 13px;
+            color: #333;
+            max-width: 110px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            display: block;
+        }
+    }
+}
+
+/* --- Control Panel Cleanup for Client Action --- */
+/* Since it's a client action, we might still have a control panel depending on how it's called.
+   But we want it to be as clean as possible. */
+.o_action_manager:has(.o_odd_dashboard) {
+    .o_control_panel {
+        display: none !important; // Total ghost mode for the dashboard
+    }
+}

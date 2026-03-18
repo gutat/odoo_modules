@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_odd_themes" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.odd_themes</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//app[@name='general_settings']" position="inside">
+                <block title="Odd Themes" name="odd_themes_settings">
+                    <setting string="Primary Color" help="Set the primary accent color used across the Odoo backend (buttons, links, active states).">
+                        <div class="content-group">
+                            <div class="row mt8">
+                                <div class="col-lg-4">
+                                    <field name="odd_primary_color" widget="color"/>
+                                </div>
+                            </div>
+                        </div>
+                    </setting>
+                </block>
+            </xpath>
+        </field>
+    </record>
+</odoo>
