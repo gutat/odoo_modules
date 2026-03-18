@@ -18,7 +18,7 @@ export class ScaleFloatField extends Component {
 
         onWillDestroy(() => {
             if (this.scaleState.isListening) {
-                this.stopListening();
+                this.stopListening(true);
             }
         });
     }
@@ -59,15 +59,20 @@ export class ScaleFloatField extends Component {
         }
     }
 
-    async stopListening() {
+    async stopListening(skipUpdate = false) {
         if (this.unlisten) {
             this.unlisten();
             this.unlisten = null;
         }
 
         // Apply final weight to the Odoo record exactly once!
-        if (this.scaleState.isListening && this.scaleState.liveWeight > 0) {
-            this.props.record.update({ [this.props.name]: this.scaleState.liveWeight });
+        if (!skipUpdate && this.scaleState.isListening && this.scaleState.liveWeight > 0) {
+            try {
+                await this.props.record.update({ [this.props.name]: this.scaleState.liveWeight });
+            } catch (e) {
+                // If the component is already being destroyed, this might fail silently which is fine
+                console.warn("Failed to update record during stopListening:", e);
+            }
         }
 
         const portName = window.localStorage.getItem("tauri_scale_port");
